@@ -1,0 +1,6 @@
+
+config BR2_PACKAGE_CRC32_EXAMPLE
+	bool "crc32 example"
+	help
+	  Example kernel module and library for using crc32 implemented
+	  in fpga fabric.

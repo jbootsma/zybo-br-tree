@@ -1,0 +1,2 @@
+
+obj-m += fpga_crc32.o

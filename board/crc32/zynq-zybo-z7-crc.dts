@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: GPL-2.0+
+/dts-v1/;
+#include "zynq-zybo-z7.dts"
+
+&clkc {
+	assigned-clocks = <&clkc 15>;
+	assigned-clock-rates = <50000000>;
+};
+
+&amba {
+	crc: crc32@43c00000 {
+		compatible = "bootsma,fpga-crc32";
+		reg = <0x43c00000 0x1000>;
+		clocks = <&clkc 15>;
+		clock-names = "fclk0";
+		interrupt-parent = <&intc>;
+		interrupts = <0 29 4>;
+	};
+};
