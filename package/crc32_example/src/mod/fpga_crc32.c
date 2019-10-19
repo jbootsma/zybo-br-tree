@@ -194,7 +194,7 @@ static bool handle_block(
 	// Setup the operation.
 	writel((u32)dev->dmem, dev->hw_addr + ADDR_MEM_DATA);
 	writel((u32)len, dev->hw_addr + ADDR_LEN_DATA);
-	writel(file->current_crc, dev->hw_addr + ADDR_INIT_VAL_DATA);
+	writel(~file->current_crc, dev->hw_addr + ADDR_INIT_VAL_DATA);
 	writel(AP_CTRL_START, dev->hw_addr + ADDR_AP_CTRL);
 
 	// Sleep until interrupt.
@@ -203,7 +203,7 @@ static bool handle_block(
 	// No more interrupts.
 	writel(0, dev->hw_addr + ADDR_GIE);
 
-	file->current_crc = readl(dev->hw_addr + ADDR_AP_RETURN);
+	file->current_crc = ~readl(dev->hw_addr + ADDR_AP_RETURN);
 
 	return true;
 }
